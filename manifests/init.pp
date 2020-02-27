@@ -13,8 +13,9 @@
 # Sample Usage: netrc::foruser("netrc_myuser": user => 'myuser', machine_user_password_triples => [['myserver.localdomain','myuser','pw'],['mysecondserver.localdomain','myuser','pw2']])
 #
 # [Remember: No empty lines between comments and class definition]
-class netrc {
-
+class netrc (
+  $path, = '',
+) {
 }
 
 define netrc::foruser(
@@ -24,8 +25,14 @@ define netrc::foruser(
   $machine_user_password_triples) {
 
   $filename = ".netrc"
+  
+  if ($path == '') {
+      $absolute_path = $home_base_directory/$user/$filename
+    } else {
+      $absolute_path = $path,
+  }
 
-  file { "$home_base_directory/$user/$filename":
+  file { "$absolute_path":
     ensure => $ensure,
     content => template('netrc/netrc.erb'),
     mode => '0600',

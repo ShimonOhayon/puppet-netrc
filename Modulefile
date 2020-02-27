@@ -1,5 +1,5 @@
 name    'saheba-netrc'
-version '1.0.0'
+version '1.0.1'
 source 'https://github.com/saheba/puppet-netrc.git'
 author 'saheba'
 license 'ASL'
