@@ -22,10 +22,10 @@ define netrc::foruser(
   $home_base_directory              = "/home",
   $user,
   $filename                         = ".netrc",
-  $path                             = "$home_base_directory/$user/$filename",
+  $file_path                        = "$home_base_directory/$user/$filename",
   $machine_user_password_triples) {
 
-    file { $path:
+    file { $file_path:
     ensure  => $ensure,
     content => template('netrc/netrc.erb'),
     mode    => '0600',
