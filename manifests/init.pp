@@ -21,18 +21,11 @@ define netrc::foruser(
   Enum["present", "absent"] $ensure = "present",
   $home_base_directory              = "/home",
   $user,
-  $path = '',
+  $filename                         = ".netrc",
+  $path                             = '$home_base_directory/$user/$filename',
   $machine_user_password_triples) {
 
-  $filename = ".netrc"
-  
-  if ($path == '') {
-      $absolute_path = $home_base_directory/$user/$filename
-    } else {
-      $absolute_path = $path,
-  }
-
-  file { "$absolute_path":
+    file { "$path":
     ensure => $ensure,
     content => template('netrc/netrc.erb'),
     mode => '0600',
