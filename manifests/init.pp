@@ -13,15 +13,15 @@
 # Sample Usage: netrc::foruser("netrc_myuser": user => 'myuser', machine_user_password_triples => [['myserver.localdomain','myuser','pw'],['mysecondserver.localdomain','myuser','pw2']])
 #
 # [Remember: No empty lines between comments and class definition]
-class netrc (
-  $path = '',
-) {
+class netrc {
+
 }
 
 define netrc::foruser(
   Enum["present", "absent"] $ensure = "present",
   $home_base_directory              = "/home",
   $user,
+  $path = '',
   $machine_user_password_triples) {
 
   $filename = ".netrc"
