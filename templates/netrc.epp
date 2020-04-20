@@ -1,0 +1,3 @@
+<% $::netrc::machine_user_password_triples.each  |triple| { -%>
+machine <%= triple['machine'] -%> login <%= triple['login'] -%> password <%= triple['password'] %>
+<%- } -%>
