@@ -23,11 +23,13 @@ define netrc::foruser(
   String                        $user,
   String                        $filename             = ".netrc",
   Stdlib::Absolutepath          $file_path            = "$home_base_directory/$user/$filename",
-  Array                         $machine_user_password_triples) {
+  Array[Hash]                   $machine_user_password_triples) {
 
   file { $file_path:
     ensure  => $ensure,
-    content => epp('netrc/netrc.epp'),
+    content => epp('netrc/netrc.epp', {
+      machine_user_password_triples => $machine_user_password_triples
+    }),
     mode    => '0600',
     owner   => "$user"
   }
