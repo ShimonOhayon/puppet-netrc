@@ -27,7 +27,7 @@ define netrc::foruser(
 
   file { $file_path:
     ensure  => $ensure,
-    content => template('netrc/netrc.erb'),
+    content => template('netrc/netrc.epp'),
     mode    => '0600',
     owner   => "$user"
   }
